@@ -1,0 +1,115 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+ <head>
+ <link href="style.css" type="text/css" rel="stylesheet">
+
+       <script language="JavaScript" type="text/JavaScript">
+
+      function verif(form1)
+      {     
+       var cv = document.getElementById("cve").value;
+       var no = document.getElementById("nom").value;
+       var ap = document.getElementById("ap").value;
+       var am = document.getElementById("am").value;
+       var us = document.getElementById("usu").value;
+       var p1 = document.getElementById("pass1").value;
+       var p2 = document.getElementById("pass2").value;
+
+       if (p1.length == 0 || p2.length == 0 || cv.length==0||no.length==0||ap.length==0||am.length==0||us.length==0|| sex.selectedIndex==0) 
+        {
+         alert("quedan campos vacios");
+         return false;
+        }       
+        else
+        {
+        if (form1.password1.value!=form1.password2.value) 
+        { alert('las contraseñas son diferentes'); return false }
+        }
+       }
+
+      function X(F)
+      {
+        if (F.password1.value==F.password2.value) 
+        { alert('las contraseñas coinciden'); return true }
+        else 
+        { alert('las contraseñas son diferentes'); return false }
+      }
+
+      </script>
+
+ <meta />
+ <meta >
+ <title>Administradores</title></head>
+</head>
+
+ <body>
+ <form  name="formu" align="center">
+    
+    <div id="unk2">
+             <h2>Cambiar Administrador</h2>
+        
+            <label for="cve">CVE:</label>
+            <input id="cve" type="search" name="clave" placeholder="Clave" required /><br>
+        
+            <label for="nombre">Nombre:</label>
+            <input id="nom" type="text" name="nombre" placeholder="Nombre/s" required /><br>
+       
+            <label for="apaterno">Apellido Paterno:</label>
+            <input id="ap" type="text" name="Apa" placeholder="Apellido Paterno" required /><br>
+       
+            <label for="amaterno">Apellido Materno:</label>
+            <input id="am" type="text" name="Ama" placeholder="Apellido materno" required /><br>
+        
+            <label for="sexo">Sexo:</label>
+            <select id="sex" name="sex" onChange="combo(this, 'theinput')" >
+              <option>---</option>
+              <option>Hombre</option>
+              <option>Mujer</option>
+            </select> <br>
+        
+            <label for="usuario">Usuario:</label>
+            <input id="usu" type="text" name="usuario" placeholder="Usuario" required /><br>
+        
+            <label for="Contraseña">Contraseña:</label>
+            <input id="pass1" type="password" name="password1" placeholder="Contraseña"  required /><br>
+        
+            <label for="contraseñados">Confirmar Contraseña:</label>
+            <input id="pass2" type="password" name="password2" placeholder="Contraseña" onblur="return(X(this.form)); MM_validateForm()" required /><br>
+      
+            <label for="Foto">Foto:</label><br>
+            <input type="file" id="files" name="files[]" /><br><br>
+            <output id="list"><img src="img/facebook-default-no-profile-pic.jpg" width=150px height=170px></output><br>
+
+       <script>
+              function archivo(evt) {
+                  var files = evt.target.files;
+             
+                  for (var i = 0, f; f = files[i]; i++) {
+
+                    if (!f.type.match('image.*')) {
+                        continue;
+                    }
+             
+                    var reader = new FileReader();
+             
+                    reader.onload = (function(theFile) {
+                        return function(e) {
+
+                         document.getElementById("list").innerHTML = ['<img class="thumb" src="', e.target.result,'" title="', escape(theFile.name), '"/>'].join('');
+                        };
+                    })(f);
+             
+                    reader.readAsDataURL(f);
+                  }
+              }
+             
+              document.getElementById('files').addEventListener('change', archivo, false);
+      </script>
+
+            <button class="button" type="button" onclick="return(verif(this.form)); MM_validateForm()">Aceptar</button>
+            <a href='panel.html'><button class="button" type="button">Cancelar</button>
+    </div></a>
+
+ </form>
+ </body>
+</html>

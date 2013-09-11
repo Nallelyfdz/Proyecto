@@ -1,0 +1,117 @@
+﻿<!DOCTYPE html>
+<html >
+ <head>
+ <link href="style.css" type="text/css" rel="stylesheet">
+
+       <script language="JavaScript" type="text/JavaScript">
+
+      function verif(form1)
+      {     
+       var no = document.getElementById("nom").value;
+       var em = document.getElementById("e-m").value;
+       var fb = document.getElementById("fb").value;
+       var tw = document.getElementById("tw").value;
+       var us = document.getElementById("usu").value;
+       var p1 = document.getElementById("pass1").value;
+       var p2 = document.getElementById("pass2").value;
+
+       if (p1.length == 0 || p2.length == 0||
+no.length==0||em.length==0||fb.length==0||us.length==0|| tw.length==0) 
+        {
+         alert("quedan campos vacios");
+         return false;
+        }       
+        else
+        {
+        if (form1.password1.value!=form1.password2.value) 
+        { alert('las contraseñas son diferentes'); return false }
+        }
+       }
+
+      function X(F)
+      {
+        if (F.password1.value==F.password2.value) 
+        { alert('las contraseñas coinciden'); return true }
+        else 
+        { alert('las contraseñas son diferentes'); return false }
+      }
+
+      </script>
+
+ <meta  />
+ <meta >
+ <title>Registro</title></head>
+</head>
+
+ <body>
+ <form  name="formu" align="center">
+    
+    <div id="div1">
+             <h2>Ingresar Administrador</h2>
+        
+            <label for="nombre">Nombre:</label>
+            <input id="nom" type="text" name="nombre" placeholder="Nombre/s" required /><br>
+
+            <label for="usuario">Usuario:</label>
+            <input id="usu" type="text" name="usuario" placeholder="Usuario" required /><br>
+
+            <label for="Contraseña">Contraseña:</label>
+            <input id="pass1" type="password" name="password1" placeholder="Contraseña"  required /><br>
+        
+            <label for="contraseñados">Confirmar Contraseña:</label>
+            <input id="pass2" type="password" name="password2" placeholder="Contraseña"                         
+
+onblur="return(X(this.form)); MM_validateForm()" required /><br>
+       
+            <label for="e-mail">e-mail:</label>
+            <input id="e-m" type="text" name="e-mail" placeholder="e-mail" required /><br>
+       
+            <label for="facebook">Facebook:</label>
+            <input id="fb" type="text" name="face" placeholder="Facebook" required /><br>
+           
+            <label for="tweeter">Tweeter:</label>
+            <input id="tw" type="text" name="tweeter" placeholder="Tweeter" required /><br>
+            
+            <label for="Foto">Foto:</label><br>
+            <input type="file" id="files" name="files[]" /><br><br>
+            <output id="list"><img src="img/facebook-default-no-profile-pic.jpg" width=150px 
+
+height=170px></output><br>
+
+       <script>
+              function archivo(evt) {
+                  var files = evt.target.files;
+             
+                  for (var i = 0, f; f = files[i]; i++) {
+
+                    if (!f.type.match('image.*')) {
+                        continue;
+                    }
+             
+                    var reader = new FileReader();
+             
+                    reader.onload = (function(theFile) {
+                        return function(e) {
+
+                         document.getElementById("list").innerHTML = ['<img class="thumb" src="', 
+
+e.target.result,'" title="', escape(theFile.name), '"/>'].join('');
+                        };
+                    })(f);
+             
+                    reader.readAsDataURL(f);
+                  }
+              }
+             
+              document.getElementById('files').addEventListener('change', archivo, false);
+      </script>
+
+            <button class="button" type="button" onclick="return(verif(this.form)); 
+
+MM_validateForm()">Aceptar</button>
+            <a href='panel.html'><button class="button" type="button">Cancelar</button>
+    </div></a>
+
+ </form>
+ </body>
+</html>
